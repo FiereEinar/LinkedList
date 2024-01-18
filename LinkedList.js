@@ -65,7 +65,7 @@ class LinkedList {
 
 	contains(value) {
 		let temp = this.nodeHead;
-		while(temp.nextNode !== null) {
+		while (temp.nextNode !== null) {
 			if (temp.value === value) return true;
 			temp = temp.nextNode;
 		}
@@ -76,7 +76,7 @@ class LinkedList {
 	find(value) {
 		let temp = this.nodeHead;
 		let i = 0;
-		while(temp.nextNode !== null) {
+		while (temp.nextNode !== null) {
 			if (temp.value === value) return i;
 			temp = temp.nextNode;
 			i++;
@@ -119,42 +119,37 @@ class LinkedList {
 		}
 		this.nodeSize--;
 	}
-
-	getLists() {
-		let string = '';
-		let temp = this.nodeHead;
-		while (temp.nextNode !== null) {
-			console.log(`${temp.value} --> ${temp.nextNode.value}`);
-			temp = temp.nextNode;
-		}
-		console.log(`${temp.value} --> ${temp.nextNode}`);
-	}
 }
 
 const linkedList = new LinkedList();
 
-linkedList.append('value 2');
-linkedList.append('value 3');
-linkedList.prepend('value 1');
-linkedList.append('value 4');
-linkedList.append('value 5');
+linkedList.append('value 2'); // ( value 2 ) --> null
+linkedList.append('value 3'); // ( value 2 ) --> ( value 3 ) --> null
 
-linkedList.getLists();
-console.log('size: ' + linkedList.size());
-console.log('tail: ' + linkedList.tail().value);
-// console.log(linkedList.head());
+linkedList.prepend('value 1');// ( value 1 ) --> ( value 2 ) --> ( value 3 ) --> null
+
+console.log('size: ' + linkedList.size()); // 3
+
+console.log('head: ' + linkedList.head().value); // value 1
+
+console.log('tail: ' + linkedList.tail().value); // value 3
+
+console.log(linkedList.at(1)) // { value: value 2, nexNode: { value 3 } }
+
 linkedList.pop();
-console.log('size: ' + linkedList.size());
-console.log('tail: ' + linkedList.tail().value);
-linkedList.getLists();
-// linkedList.pop();
-// console.log('size: ' + linkedList.size());
-// console.log('tail: ' + linkedList.tail().value);
-// linkedList.getLists();
-console.log(linkedList.contains('value 4'));
-console.log(linkedList.find('value 4'));
-console.log(linkedList.toString());
-linkedList.insertAt(2, 'test')
-console.log(linkedList.toString());
+console.log('size: ' + linkedList.size()); // 2
+console.log('tail: ' + linkedList.tail().value); // value 2
+
+console.log(linkedList.contains('value 1')); // true
+console.log(linkedList.contains('value 4')); // false
+
+console.log(linkedList.find('value 1')); // 0
+console.log(linkedList.find('value 4')); // null
+
+console.log(linkedList.toString()); // ( value 1 ) --> ( value 2 ) --> null
+
+linkedList.insertAt(1, 'test');
+console.log(linkedList.toString()); // ( value 1 ) --> ( test ) --> ( value 2 ) --> null
+
 linkedList.removeAt(1)
-console.log(linkedList.toString());
+console.log(linkedList.toString()); // ( value 1 ) --> ( value 2 ) --> null
